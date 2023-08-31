@@ -1,0 +1,17 @@
+[package]
+name = "kindle_formats"
+authors = ["willemml <willem@leit.so>"]
+description = "File formats used in the Amazon Kindle ecosystem."
+repository = "https://github.com/willemml/kindle_formats"
+license = "GPL-3.0"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+serde = { version = "1.0.188", features = ["derive"] }
+
+[features]
+default = ["krds"]
+krds = []
