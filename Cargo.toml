@@ -2,9 +2,9 @@
 name = "kindle_formats"
 authors = ["willemml <willem@leit.so>"]
 description = "File formats used in the Amazon Kindle ecosystem."
-repository = "https://github.com/willemml/kindle_formats"
+repository = "https://github.com/willemml/kindle_formats-rs"
 license = "GPL-3.0"
-version = "0.1.1"
+version = "0.1.3"
 edition = "2021"
 
 [dependencies]
