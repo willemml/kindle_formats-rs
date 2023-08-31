@@ -4,14 +4,17 @@ authors = ["willemml <willem@leit.so>"]
 description = "File formats used in the Amazon Kindle ecosystem."
 repository = "https://github.com/willemml/kindle_formats"
 license = "GPL-3.0"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
+linked-hash-map = { version = "0.5.6", features = ["serde_impl"], optional = true }
 serde = { version = "1.0.188", features = ["derive"] }
 
 [features]
 default = ["krds"]
 krds = []
+# Mostly useful for testing the serializer deserializer implementation
+# to avoid issues with byte comparaison of maps that may have
+# different orders.
+linked_hash_maps = ["dep:linked-hash-map"]

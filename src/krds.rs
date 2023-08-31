@@ -9,8 +9,13 @@
 //!
 //! Information on format and value/field names were determined thanks to [this mobilereads.com thread](https://www.mobileread.com/forums/showthread.php?t=322172)
 
+#[cfg(feature = "linked_hash_maps")]
+pub type Map<K, V> = linked_hash_map::LinkedHashMap<K, V>;
+
+#[cfg(not(feature = "linked_hash_maps"))]
+pub type Map<K, V> = std::collections::HashMap<K, V>;
+
 use serde::{Deserialize, Serialize};
-use std::collections::HashMap;
 
 /// Timer data file (.yjf and .azw3f) contains reading statistics such
 /// as words per minute and percent of book read.
@@ -53,13 +58,13 @@ pub struct ReaderDataFile {
         rename = "annotation.cache.object",
         skip_serializing_if = "Option::is_none"
     )]
-    pub annotation_cache: Option<HashMap<NoteType, IntervalTree<Note>>>,
+    pub annotation_cache: Option<Map<NoteType, IntervalTree<Note>>>,
     #[serde(rename = "apnx.key", skip_serializing_if = "Option::is_none")]
     pub apnx_key: Option<APNXKey>,
     #[serde(rename = "language.store", skip_serializing_if = "Option::is_none")]
     pub language_store: Option<LanguageStore>,
     #[serde(rename = "ReaderMetrics", skip_serializing_if = "Option::is_none")]
-    pub reader_metrics: Option<HashMap<String, String>>,
+    pub reader_metrics: Option<Map<String, String>>,
 }
 
 /// The purpose of this data type is unknown to me, if you know what
